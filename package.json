@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Basic setting of Gulp for create a new website",
   "scripts": {
-    "start": "NODE_ENV=development gulp start",
+    "dev": "NODE_ENV=development gulp start",
     "build": "NODE_ENV=production gulp build",
     "lint": "gulp eslint"
   },
