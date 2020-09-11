@@ -12,12 +12,12 @@
     "sourceType": "module"
   },
   "rules": {
-    "no-console": [1],
+//    "no-console": [1],
     "no-alert": [2],
     "no-unused-vars": [1, { "vars": "all", "args": "after-used" }],
     "strict": [1, "global"],
     //    "indent": [1, 2],
-    "quotes": [2, "single"],
+    "quotes": [0, "single"],
     "camelcase": [1, { "properties": "always" }],
     "no-multi-spaces": [0],
     "no-mixed-spaces-and-tabs": [2],
