@@ -18,8 +18,14 @@ function watchTask(callback) {
   watch([`${PATHS.src}**/*.js`, `!${PATHS.src}**/*.min.js`, '!node_modules'], jsCompileTask);
   watch([`${PATHS.src}**/*.{jpg,jpeg,gif,png,svg}`], copyImageTask);
   watch([`${PATHS.src}**/*.{mp4,m4v}`], copyMovieTask);
-  // watch([`${PATHS.src}**/*.ts`, '!node_modules'], buildTsTask);
   callback();
+
+  console.log(
+    '\n' +
+      '-------------------------------------------------\n' +
+      "🧐  < OK, I'm watching now...\n" +
+      '-------------------------------------------------\n'
+  );
 }
 
 export const start = series(parallel(ejsTask, sassCompileTask, jsCompileTask, copyImageTask, copyMovieTask, watchTask), browserSyncTask);
