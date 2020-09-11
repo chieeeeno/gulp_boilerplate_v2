@@ -36,11 +36,11 @@ export function optimizeImageTask() {
 }
 
 export function copyImageTask() {
-  const outDir = isProduction ? PATHS.dest : PATHS.docRoot;
+  const outDir = isProduction ? PATHS.dest : PATHS.root;
   return src(`${PATHS.src}**/*.{jpg,jpeg,gif,png,svg,mp4,m4v}`).pipe(dest(outDir));
 }
 
 export function copyMovieTask() {
-  const outDir = isProduction ? PATHS.dest : PATHS.docRoot;
+  const outDir = isProduction ? PATHS.dest : PATHS.root;
   return src(`${PATHS.src}**/*.{mp4,m4v}`).pipe(dest(outDir));
 }
