@@ -24,36 +24,3 @@ $breakPoint: 768;
   font-size: ($size / $screenSize * 100) + vw;
 }
 
-@mixin gradationGoldBg() {
-  background: linear-gradient(
-    0deg,
-    #fffee2 0%,
-    #d99207 6%,
-    #4e2f01 10%,
-    #fef35f 10%,
-    #d99207 34%,
-    #fef35f 35%,
-    #ffffff 75%,
-    #fef35f 90%,
-    #d99207 97%,
-    #4e2f01 97%,
-    #fef35f 99%
-  );
-}
-
-@mixin gradationSilverBg() {
-  background: linear-gradient(
-    0deg,
-    desaturate(#fffee2, 100%) 0%,
-    desaturate(#d99207, 100%) 6%,
-    desaturate(#4e2f01, 100%) 10%,
-    desaturate(#fef35f, 100%) 10%,
-    desaturate(#d99207, 100%) 34%,
-    desaturate(#fef35f, 100%) 35%,
-    desaturate(#ffffff, 100%) 75%,
-    desaturate(#fef35f, 100%) 90%,
-    desaturate(#d99207, 100%) 97%,
-    desaturate(#4e2f01, 100%) 97%,
-    desaturate(#fef35f, 100%) 99%
-  );
-}
