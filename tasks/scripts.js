@@ -14,7 +14,7 @@ export function esTranspile() {
   return src(config.src)
     .pipe(plumber())
     .pipe(webpackStream(require('../webpack.config.js'), webpack))
-    .pipe(dest(outDir))
+    .pipe(dest(`${outDir}/assets/js`))
 }
 
 export function esLint() {
