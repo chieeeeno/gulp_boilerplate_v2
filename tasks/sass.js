@@ -13,6 +13,7 @@ import easings from 'postcss-easings'
 import packageImporter from 'node-sass-package-importer'
 import postcssGapProperties from 'postcss-gap-properties'
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes'
+import postcss100vhFix from 'postcss-100vh-fix'
 import autoprefixer from 'autoprefixer'
 import mqpacker from 'css-mqpacker'
 // import csscomb from 'gulp-csscomb';
@@ -29,6 +30,7 @@ export function sassCompileTask() {
     easings(),
     postcssGapProperties(),
     postcssFlexbugsFixes(),
+    postcss100vhFix(),
     autoprefixer({
       grid: true,
       cascade: false,
@@ -54,6 +56,7 @@ export function sassCompileTask() {
           importer: packageImporter({
             extensions: ['.scss', '.csv'],
           }),
+          outputStyle: 'expanded',
         })
       )
       .pipe(postcss(postCssPlugins))
