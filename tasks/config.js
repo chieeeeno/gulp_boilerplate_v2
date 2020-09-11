@@ -16,6 +16,7 @@ export const SCRIPTS_PATH = {
 }
 
 export const GA_ACCOUNT = 'UA-XXXXXXXXXX-1'
+export const GTM_ACCOUNT = 'GTM-XXXXXX'
 
 export const GOOGLE_MAP_API_KEY = {
   production: 'XXXXXXXXX', // 本番用

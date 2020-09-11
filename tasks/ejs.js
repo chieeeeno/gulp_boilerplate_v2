@@ -8,7 +8,7 @@ import replace from 'gulp-replace'
 import rename from 'gulp-rename'
 import changedInPlace from 'gulp-changed-in-place'
 
-import { isProduction, PATHS, GA_ACCOUNT, DOMAIN_URL, STG_DOMAIN_URL } from './config'
+import { isProduction, PATHS, GA_ACCOUNT, GTM_ACCOUNT, DOMAIN_URL, STG_DOMAIN_URL } from './config'
 
 /**
  * EJSのビルドを実行する
@@ -19,7 +19,7 @@ export function ejsTask() {
   const domainUrl = isProduction ? DOMAIN_URL : STG_DOMAIN_URL
   const date = new Date().getTime()
   return (
-    src([`${PATHS.src}/**/*.ejs`, `!${PATHS.src}/**/_*.ejs`])
+    src([`${PATHS.src}/ejs/**/*.ejs`, `!${PATHS.src}/ejs/**/_*.ejs`])
       // .pipe(changedInPlace({ firstPass: true }))
       .pipe(
         plumber({
@@ -28,7 +28,8 @@ export function ejsTask() {
       )
       .pipe(
         ejs({
-          gaAccount: GA_ACCOUNT,
+          GA_ACCOUNT,
+          GTM_ACCOUNT,
           domainUrl,
           date,
         })
@@ -46,7 +47,7 @@ export function ejsTask() {
       .pipe(gulpIf(isProduction, replace('.csv', '.min.csv')))
       .pipe(gulpIf(isProduction, replace('.js', '.min.js')))
       .pipe(rename({ extname: '.html' }))
-      .pipe(dest(outDir))
+      .pipe(dest(`${outDir}/`))
   )
   // .pipe(notify({ message: 'EJS task complete' }));
 }
