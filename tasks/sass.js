@@ -54,7 +54,7 @@ export function sassCompileTask() {
       .pipe(
         sass({
           importer: packageImporter({
-            extensions: ['.scss', '.csv'],
+            extensions: ['.scss', '.css'],
           }),
           outputStyle: 'expanded',
         })
@@ -63,10 +63,10 @@ export function sassCompileTask() {
       // .pipe(csscomb())
       // プロダクション版はminify化してファイル名を*.min.cssに変更する
       .pipe(gulpIf(isProduction, cleanCSS()))
-      .pipe(gulpIf(isProduction, rename({ extname: '.min.csv' })))
+      .pipe(gulpIf(isProduction, rename({ extname: '.min.css' })))
       .pipe(
         rename((path) => {
-          path.dirname += '/../../csv' // 出力先をcssフォルダに変更
+          path.dirname += '/../css' // 出力先をcssフォルダに変更
         })
       )
       .pipe(gulpIf(!isProduction, dest(outDir, { sourcemaps: './_sourcemaps' })))
