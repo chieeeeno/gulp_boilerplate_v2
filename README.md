@@ -1,27 +1,35 @@
-# Gulp の基本セット v2
+# Gulp の基本セット v3
 
 ## ディレクトリ構成
 
-ディレクトリ構成は以下のような感じです。
+ディレクトリ構成は以下の構成となる。
 
 ```
 root
 　├build        -> ビルド時に納品用ファイルが出力されるディレクトリ
-　├docRoot      -> 開発時のルートディレクトリ
+　│
+　├public_html      -> 開発時のルートディレクトリ
+　│
 　├src          -> 開発用ファイルのディレクトリ
 　│ ├assets
+　│ │  ├csv   -> JSONファイル生成用のCSVファイル
+　│ │  │ └[ファイル名].csv
 　│ │  ├images
 　│ │  │   └[ページ名]
 　│ │  │        └xxxxxx.jpg など
 　│ │  ├js
 　│ │  │ └[ページ名].js
-　│ │  └scss
-　│ │      └[ページ名]
-　│ │           └[ページ名].scss
+　│ │  │
+　│ │  └scss   -> .scssファイルを格納するディレクトリ。FLOCCSをベースとして命名を行う。
+　│ │    ├foundation
+　│ │    ├layout
+　│ │    ├object
+　│ │    └style.scss
 　│ │
-　│ └sponsored
+　│ └ejs
 　│    ├include        -> EJSで共通に読み込むファイルを入れる（GAタグなど）
-　│    └[ページ名]
+　│    ├index.ejs
+　│    └[ディレクトリ名]
 　│        └index.ejs
 　│
 　├tasks               -> Gulpタスクなどが入っているディレクトリ
@@ -33,20 +41,31 @@ root
 
 ### 開発時
 
-docRoot 配下をサーバーが参照し、ビルドしたファイルがコピーされ、ファイルが watch 状態に突入します。
+```
+npm run start
+```
+
+public_html 配下をサーバーが参照し、ビルドしたファイルがコピーされ、ファイルが watch 状態に突入します。
 
 JavaScript は ES2016 に対応してます。
 
 JavaScript を新規作成する時は、 `webpack.config.js` にエントリーポイントを追記してください。
 
-```
-npm run start
-```
+
 
 ### 納品時
-
-minify や画像の圧縮を実行し、納品用のディレクトリにファイル一式を出力する
 
 ```
 npm run build
 ```
+
+minify や画像の圧縮を実行し、`build`ディレクトリにファイル一式を出力する
+
+
+### CSVファイルをJSONファイルに変換
+
+```
+npm run convert
+```
+`src/assets/csv/*.csv` を対象に、JSONファイルを生成する。
+出力先は、`public_html/assets/json/` （開発時）または `build/assets/json/` （納品時）に出力される。
