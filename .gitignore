@@ -108,5 +108,6 @@ Temporary Items
 .htaccess
 .htpasswd
 
-docRoot
+root
 build
+public_html

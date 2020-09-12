@@ -1,13 +1,17 @@
-import { isProduction, PATHS } from './config';
+import { src, dest } from 'gulp'
+import convert from 'gulp-convert'
+import rename from 'gulp-rename'
+
+import { isProduction, PATHS } from './config'
 
 /**
  * CSVファイルをJSONファイルに変換する
  * @returns {*}
  */
 export function convertCsvToJson() {
-  const outDir = isProduction ? PATHS.dest : PATHS.docRoot;
+  const outDir = isProduction ? PATHS.dest : PATHS.root
 
-  return src(`${PATHS.src}**/_assets/csv/*.csv`)
+  return src(`${PATHS.src}**/assets/csv/*.csv`)
     .pipe(
       convert({
         from: 'csv',
@@ -15,9 +19,9 @@ export function convertCsvToJson() {
       })
     )
     .pipe(
-      rename(path => {
-        path.dirname += '/../../json'; // 出力先をjsonフォルダに変更
+      rename((path) => {
+        path.dirname += '/../json' // 出力先をjsonフォルダに変更
       })
     )
-    .pipe(dest(outDir));
+    .pipe(dest(`${outDir}/`))
 }

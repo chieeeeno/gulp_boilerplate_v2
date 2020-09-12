@@ -1,25 +1,25 @@
-import { src, dest } from 'gulp';
-import plumber from 'gulp-plumber';
-import notify from 'gulp-notify';
-import ejs from 'gulp-ejs';
-import htmlbeautify from 'gulp-html-beautify';
-import gulpIf from 'gulp-if';
-import replace from 'gulp-replace';
-import rename from 'gulp-rename';
-import changedInPlace from 'gulp-changed-in-place';
+import { src, dest } from 'gulp'
+import plumber from 'gulp-plumber'
+import notify from 'gulp-notify'
+import ejs from 'gulp-ejs'
+import htmlbeautify from 'gulp-html-beautify'
+import gulpIf from 'gulp-if'
+import replace from 'gulp-replace'
+import rename from 'gulp-rename'
+import changedInPlace from 'gulp-changed-in-place'
 
-import { isProduction, PATHS, GA_ACCOUNT, DOMAIN_URL, STG_DOMAIN_URL } from './config';
+import { isProduction, PATHS, GA_ACCOUNT, GTM_ACCOUNT, DOMAIN_URL, STG_DOMAIN_URL } from './config'
 
 /**
  * EJSのビルドを実行する
  * @returns {*}
  */
 export function ejsTask() {
-  const outDir = isProduction ? PATHS.dest : PATHS.docRoot;
-  const domainUrl = isProduction ? STG_DOMAIN_URL : STG_DOMAIN_URL;
-  const date = new Date().getTime();
+  const outDir = isProduction ? PATHS.dest : PATHS.root
+  const domainUrl = isProduction ? DOMAIN_URL : STG_DOMAIN_URL
+  const date = new Date().getTime()
   return (
-    src([`${PATHS.src}/**/*.ejs`, `!${PATHS.src}/**/_*.ejs`])
+    src([`${PATHS.src}/ejs/**/*.ejs`, `!${PATHS.src}/ejs/**/_*.ejs`])
       // .pipe(changedInPlace({ firstPass: true }))
       .pipe(
         plumber({
@@ -28,7 +28,8 @@ export function ejsTask() {
       )
       .pipe(
         ejs({
-          gaAccount: GA_ACCOUNT,
+          GA_ACCOUNT,
+          GTM_ACCOUNT,
           domainUrl,
           date,
         })
@@ -44,9 +45,9 @@ export function ejsTask() {
       )
       // プロダクション版はjsファイルとCSSファイルのパスを.minをつけたファイルに変更する
       .pipe(gulpIf(isProduction, replace('.css', '.min.css')))
-      // .pipe(gulpif(isProduction, replace('.js', '.min.js')))
+      .pipe(gulpIf(isProduction, replace('.js', '.min.js')))
       .pipe(rename({ extname: '.html' }))
-      .pipe(dest(outDir))
-  );
+      .pipe(dest(`${outDir}/`))
+  )
   // .pipe(notify({ message: 'EJS task complete' }));
 }

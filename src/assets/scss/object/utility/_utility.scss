@@ -1,0 +1,21 @@
+.u-copyGuard {
+  pointer-events: none;
+}
+
+.u-pcOnly {
+  @include pc() {
+    display: block;
+  }
+  @include sp() {
+    display: none;
+  }
+}
+
+.u-spOnly {
+  @include pc() {
+    display: none;
+  }
+  @include sp() {
+    display: block;
+  }
+}

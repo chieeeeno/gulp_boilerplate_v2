@@ -10,7 +10,7 @@ export function browserSyncTask(callback) {
     {
       port: 3000,
       server: {
-        baseDir: PATHS.docRoot,
+        baseDir: PATHS.root,
       },
       open: 'external',
     },

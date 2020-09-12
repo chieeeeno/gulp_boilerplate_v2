@@ -1,0 +1,26 @@
+$breakPoint: 768;
+
+// pc表示
+@mixin pc($width: #{$breakPoint + 1}px, $print: true) {
+  @media screen and (min-width: $width), print {
+    @content;
+    @if $print != true {
+      display: none;
+    }
+  }
+}
+// SP表示
+@mixin sp($width: #{$breakPoint + 1}px) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin fontsize($size: 14px) {
+  font-size: ($size / $baseFont) + rem;
+}
+
+@mixin fontsizeVw($size: 14px, $screenSize: 750) {
+  font-size: ($size / $screenSize * 100) + vw;
+}
+

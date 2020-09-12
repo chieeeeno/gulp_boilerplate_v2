@@ -1,6 +1,6 @@
 <%
   const metaSetting = {
-    title:'タイトルが入ります',
+    title:'タイトルが入りますa',
     description:'ディスクリプションが入ります',
     tw_card:'summary_large_image',
     // tw_site:'@hoge',
@@ -19,13 +19,13 @@
 <%- include('./include/_meta',{config:metaSetting}) %>
 <%- include('./include/_og',{config:metaSetting}) %>
 <%- include('./include/_tw_card',{config:metaSetting}) %>
-<%- include('./include/_analytics',{gaAccount:gaAccount}) %>
-<link rel="stylesheet" href="/assets/css/top.css?<%=date%>">
+<%- include('./include/_gtm',{ GTM_ACCOUNT }) %>
+<link rel="stylesheet" href="/assets/css/style.css?<%=date%>">
 </head>
 
 <body>
-<!--  <img src="/assets/images/top/image.png" alt="">-->
-  <script src="/assets/js/top.js?<%=date%>"></script>
+<img src="/assets/images/to p/image.png" alt="" class="u-copyGuard">
+    <script src="/assets/js/top.js?<%=date%>"></script>
 </body>
 
 </html>
