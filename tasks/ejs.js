@@ -44,7 +44,7 @@ export function ejsTask() {
         })
       )
       // プロダクション版はjsファイルとCSSファイルのパスを.minをつけたファイルに変更する
-      .pipe(gulpIf(isProduction, replace('.csv', '.min.csv')))
+      .pipe(gulpIf(isProduction, replace('.css', '.min.css')))
       .pipe(gulpIf(isProduction, replace('.js', '.min.js')))
       .pipe(rename({ extname: '.html' }))
       .pipe(dest(`${outDir}/`))
