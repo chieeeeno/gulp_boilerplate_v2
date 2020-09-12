@@ -20,8 +20,8 @@ export function convertCsvToJson() {
     )
     .pipe(
       rename((path) => {
-        path.dirname += '/../../json' // 出力先をjsonフォルダに変更
+        path.dirname += '/../json' // 出力先をjsonフォルダに変更
       })
     )
-    .pipe(dest(outDir))
+    .pipe(dest(`${outDir}/`))
 }
